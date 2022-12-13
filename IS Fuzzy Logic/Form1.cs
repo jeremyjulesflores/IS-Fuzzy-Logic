@@ -34,11 +34,11 @@ namespace IS_Fuzzy_Logic
         {
 
             roomTemp = new MembershipFunctionCollection();
-            roomTemp.Add(new MembershipFunction("VERY_COLD", -15.0, -10.0, -10.0, -5.0));
-            roomTemp.Add(new MembershipFunction("COLD", -10.0, -5.0, -5.0, 0.0));
-            roomTemp.Add(new MembershipFunction("WARM", -5.0, 0.0, 0.0, 5.0));
-            roomTemp.Add(new MembershipFunction("HOT", 0.0, 5.0, 5.0, 10.0));
-            roomTemp.Add(new MembershipFunction("VERY_HOT", 5.0, 10.0, 10.0, 15.0));
+            roomTemp.Add(new MembershipFunction("VERY_COLD", -10.0, 0.0, 0.0, 10.0));
+            roomTemp.Add(new MembershipFunction("COLD", 0.0, 10.0, 10.0, 20.0));
+            roomTemp.Add(new MembershipFunction("WARM", 10.0, 20.0, 20.0, 30.0));
+            roomTemp.Add(new MembershipFunction("HOT", 20.0, 30.0, 30.0, 40.0));
+            roomTemp.Add(new MembershipFunction("VERY_HOT", 30.0, 40.0, 40.0, 50.0));
             roomTempLevel = new LinguisticVariable("ROOM", roomTemp);
 
 
@@ -51,11 +51,9 @@ namespace IS_Fuzzy_Logic
             targetTempLevel = new LinguisticVariable("TARGET", targetTemp);
 
             acOutput = new MembershipFunctionCollection();
-            acOutput.Add(new MembershipFunction("COOL_ALOT", -15.0, -10.0, -10.0, -5.0));
             acOutput.Add(new MembershipFunction("COOL", -10.0, -5.0, -5.0, 0.0));
             acOutput.Add(new MembershipFunction("NO_CHANGE", -5.0, 0.0, 0.0, 5.0));
             acOutput.Add(new MembershipFunction("HEAT", 0.0, 5.0, 5.0, 10.0));
-            acOutput.Add(new MembershipFunction("HEAT_ALOT", 5.0, 10.0, 10.0, 15.0));
             acOutputLevel = new LinguisticVariable("ACOUTPUT", acOutput);
         }
 
@@ -68,9 +66,20 @@ namespace IS_Fuzzy_Logic
         public void setRules()
         {
             myrules = new FuzzyRuleCollection();
-            myrules.Add(new FuzzyRule("IF (ROOM IS COLD) OR (ROOM IS VERY_COLD) AND (TARGET IS WARM) THEN ACOUTPUT IS HEAT"));
-            myrules.Add(new FuzzyRule("IF (ROOM IS HOT) OR (ROOM IS VERY_HOT) AND (TARGET IS WARM) THEN ACOUTPUT IS COOL"));
+            myrules.Add(new FuzzyRule("IF (ROOM IS COLD) AND (TARGET IS WARM) THEN ACOUTPUT IS HEAT"));
+            myrules.Add(new FuzzyRule("IF (ROOM IS VERY_COLD) AND (TARGET IS WARM) THEN ACOUTPUT IS HEAT"));
+
+
+            myrules.Add(new FuzzyRule("IF (ROOM IS HOT) AND (TARGET IS WARM) THEN ACOUTPUT IS COOL"));
+            myrules.Add(new FuzzyRule("IF (ROOM IS VERY_HOT) AND (TARGET IS WARM) THEN ACOUTPUT IS COOL"));
+
+
             myrules.Add(new FuzzyRule("IF (ROOM IS WARM) AND (TARGET IS WARM) THEN ACOUTPUT IS NO_CHANGE"));
+            myrules.Add(new FuzzyRule("IF (ROOM IS COLD) AND (TARGET IS COLD) THEN ACOUTPUT IS NO_CHANGE"));
+            myrules.Add(new FuzzyRule("IF (ROOM IS VERY_COLD) AND (TARGET IS VERY_COLD) THEN ACOUTPUT IS NO_CHANGE"));
+            myrules.Add(new FuzzyRule("IF (ROOM IS VERY_HOT) AND (TARGET IS VERY_HOT) THEN ACOUTPUT IS NO_CHANGE"));
+            myrules.Add(new FuzzyRule("IF (ROOM IS HOT) AND (TARGET IS HOT) THEN ACOUTPUT IS NO_CHANGE"));
+
         }
 
         public void setFuzzyEngine()
@@ -84,10 +93,10 @@ namespace IS_Fuzzy_Logic
 
         public void fuziffyvalues()
         {
-            roomTempLevel.InputValue = 0.0;
-            roomTempLevel.Fuzzify("VERY_COLD");
+            roomTempLevel.InputValue = 30.0;
+            roomTempLevel.Fuzzify("HOT");
             targetTempLevel.InputValue = (Convert.ToDouble(textBox1.Text));
-            targetTempLevel.Fuzzify("VERY_COLD");
+            targetTempLevel.Fuzzify("VERY_HOT");
 
         }
         public void defuzzy()
