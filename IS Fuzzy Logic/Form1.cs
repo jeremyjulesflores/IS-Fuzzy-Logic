@@ -70,42 +70,31 @@ namespace IS_Fuzzy_Logic
         public void setRules()
         {
             myrules = new FuzzyRuleCollection();
-            //IF ROOM IS COLD  AND VERY COLD
+            //IF ROOM IS COLD
             myrules.Add(new FuzzyRule("IF (ROOM IS COLD) AND (TARGET IS VERY_COLD) THEN ACOUTPUT IS COOL"));
-
-            myrules.Add(new FuzzyRule("IF (ROOM IS VERY_COLD) AND (TARGET IS COLD) THEN ACOUTPUT IS HEAT"));
-
             myrules.Add(new FuzzyRule("IF (ROOM IS COLD) AND (TARGET IS WARM) THEN ACOUTPUT IS HEAT"));
-            myrules.Add(new FuzzyRule("IF (ROOM IS VERY_COLD) AND (TARGET IS WARM) THEN ACOUTPUT IS HEAT"));
-
             myrules.Add(new FuzzyRule("IF (ROOM IS COLD) AND (TARGET IS HOT) THEN ACOUTPUT IS HEAT"));
-            myrules.Add(new FuzzyRule("IF (ROOM IS VERY_COLD) AND (TARGET IS HOT) THEN ACOUTPUT IS HEAT"));
-
             myrules.Add(new FuzzyRule("IF (ROOM IS COLD) AND (TARGET IS VERY_HOT) THEN ACOUTPUT IS HEAT"));
+            //IF ROOM IS VERY_COLD
+            myrules.Add(new FuzzyRule("IF (ROOM IS VERY_COLD) AND (TARGET IS COLD) THEN ACOUTPUT IS HEAT"));
+            myrules.Add(new FuzzyRule("IF (ROOM IS VERY_COLD) AND (TARGET IS WARM) THEN ACOUTPUT IS HEAT"));
+            myrules.Add(new FuzzyRule("IF (ROOM IS VERY_COLD) AND (TARGET IS HOT) THEN ACOUTPUT IS HEAT"));
             myrules.Add(new FuzzyRule("IF (ROOM IS VERY_COLD) AND (TARGET IS VERY_HOT) THEN ACOUTPUT IS HEAT"));
-
-            //IF ROOM IS HOT AND VERY HOT
+            //IF ROOM IS HOT
             myrules.Add(new FuzzyRule("IF (ROOM IS HOT) AND (TARGET IS VERY_HOT) THEN ACOUTPUT IS HEAT"));
-
-            myrules.Add(new FuzzyRule("IF (ROOM IS VERY_HOT) AND (TARGET IS HOT) THEN ACOUTPUT IS COOL"));
-
             myrules.Add(new FuzzyRule("IF (ROOM IS HOT) AND (TARGET IS WARM) THEN ACOUTPUT IS COOL"));
-            myrules.Add(new FuzzyRule("IF (ROOM IS VERY_HOT) AND (TARGET IS WARM) THEN ACOUTPUT IS COOL"));
-
             myrules.Add(new FuzzyRule("IF (ROOM IS HOT) AND (TARGET IS COLD) THEN ACOUTPUT IS COOL"));
-            myrules.Add(new FuzzyRule("IF (ROOM IS VERY_HOT) AND (TARGET IS COLD) THEN ACOUTPUT IS COOL"));
-
             myrules.Add(new FuzzyRule("IF (ROOM IS HOT) AND (TARGET IS VERY_COLD) THEN ACOUTPUT IS COOL"));
+            //IF ROOM IS VERY_HOT
+            myrules.Add(new FuzzyRule("IF (ROOM IS VERY_HOT) AND (TARGET IS HOT) THEN ACOUTPUT IS COOL"));
+            myrules.Add(new FuzzyRule("IF (ROOM IS VERY_HOT) AND (TARGET IS WARM) THEN ACOUTPUT IS COOL"));
+            myrules.Add(new FuzzyRule("IF (ROOM IS VERY_HOT) AND (TARGET IS COLD) THEN ACOUTPUT IS COOL"));
             myrules.Add(new FuzzyRule("IF (ROOM IS VERY_HOT) AND (TARGET IS VERY_COLD) THEN ACOUTPUT IS COOL"));
-
             //IF ROOM IS WARM
             myrules.Add(new FuzzyRule("IF (ROOM IS WARM) AND (TARGET IS VERY_COLD) THEN ACOUTPUT IS COOL"));
             myrules.Add(new FuzzyRule("IF (ROOM IS WARM) AND (TARGET IS COLD) THEN ACOUTPUT IS COOL"));
             myrules.Add(new FuzzyRule("IF (ROOM IS WARM) AND (TARGET IS HOT) THEN ACOUTPUT IS HEAT"));
             myrules.Add(new FuzzyRule("IF (ROOM IS WARM) AND (TARGET IS VERY_HOT) THEN ACOUTPUT IS HEAT"));
-
-
-
             //NO CHANGE RULES
             myrules.Add(new FuzzyRule("IF (ROOM IS WARM) AND (TARGET IS WARM) THEN ACOUTPUT IS NO_CHANGE"));
             myrules.Add(new FuzzyRule("IF (ROOM IS COLD) AND (TARGET IS COLD) THEN ACOUTPUT IS NO_CHANGE"));
